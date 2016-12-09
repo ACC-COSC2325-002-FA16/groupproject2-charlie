@@ -32,15 +32,15 @@ Assigned to Casey.
 Something like...
 
 	- Title page ----------------------------- 1
-	- Table of contents -------------------- 2
-	- Introduction -------------------------- 3
-	- The microcontroller platform ----- 4
-	- The test device ---------------------- 5
-	- Development tools ----------------- 6
-	- Your experiment -------------------- 7
-	- Conclusions ------------------------- 8
-	- Contributions ------------------------ 9
-	- Project code ------------------------ 10
+	- Table of contents ---------------------- 2
+	- Introduction --------------------------- 3
+	- The microcontroller platform ----------- 4
+	- The test device ------------------------ 5
+	- Development tools --------------------- 6
+	- Your experiment ----------------------- 7
+	- Conclusions -------------------------- 8
+	- Contributions -------------------------- 9
+	- Project code -------------------------- 10
 
 Introduction
 ============
