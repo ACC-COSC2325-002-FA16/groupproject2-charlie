@@ -35,7 +35,6 @@ delay:
 commandwrite:
             out     LCD_DPRT, r24           ; load the command 
             cbi     LCD_CPRT, LCD_RS        ; turn on commanding
-            cbi     LCD_CPRT, LCD_RW        ; turn on writing
             sbi     LCD_CPRT, LCD_EN        ; enable               
             
             ldi     r24, 0x01              
@@ -51,7 +50,6 @@ commandwrite:
 datawrite:
             out     LCD_DPRT, r24           ; load the data 
             sbi     LCD_CPRT, LCD_RS        ; turn on data sending
-            cbi     LCD_CPRT, LCD_RW        ; turn on writing
             sbi     LCD_CPRT, LCD_EN        ; enable             
             
             ldi     r24, 0x01              
@@ -118,5 +116,3 @@ main:
 
 exit:
         rjmp exit
-
-
