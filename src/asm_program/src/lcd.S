@@ -74,7 +74,7 @@ main:
             ldi     r25, 0x07               ; 7
     
             call    delay            
-            ldi     r24,0x38                6           
+            ldi     r24,0x38                ; 6           
             CALL    commandwrite 
     
             ldi     r24, 0xD0               ; 208
