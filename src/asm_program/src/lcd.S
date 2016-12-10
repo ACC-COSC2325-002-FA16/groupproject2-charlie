@@ -33,65 +33,62 @@ delay:
             ret
 
 commandwrite:
-            out     LCD_DPRT, r24           
-            cbi     LCD_CPRT, LCD_RS        
-            cbi     LCD_CPRT, LCD_RW        
-            sbi     LCD_CPRT, LCD_EN                        
+            out     LCD_DPRT, r24           ; load the command 
+            cbi     LCD_CPRT, LCD_RS        ; turn on commanding
+            cbi     LCD_CPRT, LCD_RW        ; turn on writing
+            sbi     LCD_CPRT, LCD_EN        ; enable               
             
             ldi     r24, 0x01              
             ldi     r25, 0x00              
             call    delay                            
             
-            cbi     LCD_CPRT, LCD_EN        
+            cbi     LCD_CPRT, LCD_EN        ; disable
 
             ldi     r24, 0x64               ; 100
             ldi     r25, 0x00              
             jmp     delay                 
 
 datawrite:
-            out     LCD_DPRT, r24           
-            sbi     LCD_CPRT, LCD_RS        
-            cbi     LCD_CPRT, LCD_RW        
-            sbi     LCD_CPRT, LCD_EN        
+            out     LCD_DPRT, r24           ; load the data 
+            sbi     LCD_CPRT, LCD_RS        ; turn on data sending
+            cbi     LCD_CPRT, LCD_RW        ; turn on writing
+            sbi     LCD_CPRT, LCD_EN        ; enable             
             
             ldi     r24, 0x01              
             ldi     r25, 0x00               
             call    delay                
             
-            cbi     LCD_CPRT, LCD_EN        
+            cbi     LCD_CPRT, LCD_EN        ; disable
             
             ldi     r24, 0x64               ; 100
             ldi     r25, 0x00             
             jmp     delay                 
 
 main:
-            ldi     R24,0xFF;               
-            out     LCD_DDDR, R24   
-            out     LCD_CDDR, R24   
-            cbi     LCD_CPRT,LCD_EN 
+            ldi     R24,0xFF                
+            out     LCD_DDDR, R24           ; turning on output mode
+            out     LCD_CDDR, R24           ; turning on output mode
+            cbi     LCD_CPRT,LCD_EN         ; disable
     
             ldi     r24, 0xD0               ; 208
-            ldi     r25, 0x07               ; 7
-    
+            ldi     r25, 0x07               ; 7  
             call    delay            
-            ldi     r24,0x38                ; 6           
+            ldi     r24,0x38                ; command to init LCD to 5x7 matrix           
             CALL    commandwrite 
     
             ldi     r24, 0xD0               ; 208
-            ldi     r25, 0x07               ; 7
-    
+            ldi     r25, 0x07               ; 7   
             call    delay            
-            ldi     r24,0x0E                ; 14             
+            ldi     r24,0x0E                ; command to turn display on, & cursor blink             
             CALL    commandwrite 
     
-            ldi     R24,0x01                
+            ldi     R24,0x01                ; clear display
             CALL    commandwrite 
     
             ldi r24, 0xD0                   ; 208
-            ldi r25, 0x07                   ; 7
-    
+            ldi r25, 0x07                   ; 7   
             call    delay             
-            ldi     r24, 0x06               ; 6
+            ldi     r24, 0x06               ; command to shift cursor right
             call    commandwrite             
     
             ldi     R24, 0x4d               ;'M'                 

@@ -2,13 +2,17 @@
 #include <avr/io.h>
 #include "../include/AVRSpecialRegs.inc"
 
-#define LCD_DPRT 	11
-#define LCD_DDDR 	10
+; PortD is LCD data port
+#define LCD_DPRT 	11	
+#define LCD_DDDR 	10	 
 
-#define LCD_CPRT 	5
-#define LCD_CDDR 	4
+; PortB is LCD command port
+#define LCD_CPRT 	5	
+#define LCD_CDDR 	4	
 
-
+; bit for register select
 #define LCD_RS 		0
-#define LCD_RW 		1
-#define LCD_EN 		2
+; bit for read/write	 
+#define LCD_RW 		1 
+; bit for enable	
+#define LCD_EN 		2	
