@@ -12,8 +12,5 @@
 ; bit for register select
 #define LCD_RS 		0
 
-; bit for read/write	 
-#define LCD_RW 		1 
-
 ; bit for enable	
 #define LCD_EN 		2	
