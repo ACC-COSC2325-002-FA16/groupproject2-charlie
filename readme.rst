@@ -24,6 +24,15 @@ Assigned to Casey.
 - identify the device and microcontroller platform your project used. 
 - list all the team members names.
 
+Group Project 2
+
+LCD Display For Arduino
+
+- Casey Sanchez
+- Evan Coffey
+- Bryan Newsome
+- Amanda Hooge
+
 Table of Contents
 =================
 
@@ -31,8 +40,6 @@ Assigned to Casey.
 
 Something like...
 
-	- Title page ----------------------------- 1
-	- Table of contents ---------------------- 2
 	- Introduction --------------------------- 3
 	- The microcontroller platform ----------- 4
 	- The test device ------------------------ 5
@@ -50,6 +57,8 @@ Assigned to Casey.
 - describe the basic hardware components you chose to experiment with. 
 - You should also describe the experiment you are going to conduct that demonstrates that hardware. 
 - This section is not a detailed report on those components, just a basic introduction to the parts you ended up with, and the demonstration you decided to set up.
+
+For our project, we decided to use the 16x2 LCD display and an Arduino microcontroller. To get it working all that was needed was around twelve jumper wires, a basic breadboard and the microcontroller. We decided to display a simple message on the LCD screen. This proved a very daunting task. After much research and meticulous reading of wiring diagrams, we were successful. [[[As soon as we were comfortable with the assembly language for the LCD, we were eager to add more components to our demonstration. Being in the holiday mood, we added blinking LED lights and a nice tune with the buzzer.]]
 
 The Microcontroller Platform
 ============================
