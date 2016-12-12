@@ -62,6 +62,32 @@ datawrite:
             ldi     r25, 0x00             
             jmp     delay                 
 
+
+message:
+            ldi     R24, 0x4d               ;'M'                 
+            call    datawrite
+            ldi     R24, 0x65               ;'e'                 
+            call    datawrite
+            ldi     R24, 0x72               ;'r'                 
+            call    datawrite
+            ldi     R24, 0x72               ;'r'                 
+            call    datawrite
+            ldi     R24, 0x79               ;'y'                 
+            call    datawrite
+            ldi     R24, 0x20               ;' '                 
+            call    datawrite
+            ldi     R24, 0x58               ;'X'                 
+            call    datawrite
+            ldi     R24, 0x2d               ;'-'                 
+            call    datawrite
+            ldi     R24, 0x6d               ;'m'                 
+            call    datawrite
+            ldi     R24, 0x61               ;'a'                 
+            call    datawrite
+            ldi     R24, 0x73               ;'s'                 
+            call    datawrite
+            ret
+
 main:
             ldi     R24,0xFF                
             out     LCD_DDDR, R24           ; turning on output mode
@@ -83,88 +109,37 @@ main:
             ldi     R24,0x01                ; clear display
             CALL    commandwrite 
     
-            ldi     r24, 0xD0                   ; 208
-            ldi     r25, 0x07                   ; 7   
+            ldi     r24, 0xD0               ; 208
+            ldi     r25, 0x07               ; 7   
             call    delay             
             ldi     r24, 0x06               ; command to shift cursor right
             call    commandwrite             
     
-            ldi     R24, 0x4d               ;'M'                 
-            call    datawrite
-            ldi     R24, 0x65               ;'e'                 
-            call    datawrite
-            ldi     R24, 0x72               ;'r'                 
-            call    datawrite
-            ldi     R24, 0x72               ;'r'                 
-            call    datawrite
-            ldi     R24, 0x79               ;'y'                 
-            call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
-            ldi     R24, 0x58               ;'X'                 
-            call    datawrite
-            ldi     R24, 0x2d               ;'-'                 
-            call    datawrite
-            ldi     R24, 0x6d               ;'m'                 
-            call    datawrite
-            ldi     R24, 0x61               ;'a'                 
-            call    datawrite
-            ldi     R24, 0x73               ;'s'                 
-            call    datawrite
+            call    message
 
+            ldi     r26, 7
+spaces:        
             ldi     R24, 0x20               ;' '                 
             call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
+            dec     r26
+            cpi     r26, 0
+            brne    spaces
 
-
-            ldi     R24, 0x4d               ;'M'                 
-            call    datawrite
-            ldi     R24, 0x65               ;'e'                 
-            call    datawrite
-            ldi     R24, 0x72               ;'r'                 
-            call    datawrite
-            ldi     R24, 0x72               ;'r'                 
-            call    datawrite
-            ldi     R24, 0x79               ;'y'                 
-            call    datawrite
-            ldi     R24, 0x20               ;' '                 
-            call    datawrite
-            ldi     R24, 0x58               ;'X'                 
-            call    datawrite
-            ldi     R24, 0x2d               ;'-'                 
-            call    datawrite
-            ldi     R24, 0x6d               ;'m'                 
-            call    datawrite
-            ldi     R24, 0x61               ;'a'                 
-            call    datawrite
-            ldi     R24, 0x73               ;'s'                 
-            call    datawrite
+            call    message
 
             ldi     r18, 0x0
-scroll:
-            
-            ldi     r24, 0xFF               ; 208
-            ldi     r25, 0xFF               ; 7   
+scroll:  
+            ldi     r24, 0xFF               
+            ldi     r25, 0xFF                
             call    delay
-            ldi     r24, 0xFF               ; 208
-            ldi     r25, 0xFF               ; 7   
+            ldi     r24, 0xFF               
+            ldi     r25, 0xFF                
             call    delay
-            ldi     r24, 0xFF               ; 208
-            ldi     r25, 0xFF               ; 7   
+            ldi     r24, 0xFF               
+            ldi     r25, 0xFF                
             call    delay
-            ldi     r24, 0xFF               ; 208
-            ldi     r25, 0xFF               ; 7   
+            ldi     r24, 0xFF               
+            ldi     r25, 0xFF                
             call    delay
 
             ldi     R24,0x18                ; command to move display to the left
@@ -174,8 +149,5 @@ scroll:
             brne    scroll
             rjmp    commandwrite
 
-
-            rjmp    exit
-
 exit:
-        rjmp exit
+            rjmp exit
