@@ -104,6 +104,7 @@ main:
             ldi     r24,0x0E                ; command to turn display on, & cursor blink             
             CALL    commandwrite 
     
+start:
             ldi     R24,0x01                ; clear display
             CALL    commandwrite 
     
@@ -115,7 +116,7 @@ main:
     
             call    message
 
-            ldi     r26, 7                  ; sevan spaces before next message
+            ldi     r26, 7                  ; seven spaces before next message
 spaces:        
             ldi     R24, 0x20               ;' '                 
             call    datawrite
@@ -125,7 +126,6 @@ spaces:
 
             call    message
 
-            ldi     r18, 0x0
 scroll:  
             ldi     r24, 0xFF               
             ldi     r25, 0xFF                
@@ -143,9 +143,7 @@ scroll:
             ldi     R24,0x18                ; command to move display to the left
             call    commandwrite
 
-            dec     r18
-            brne    scroll
-            rjmp    commandwrite
+            jmp    scroll
 
 exit:
             rjmp exit
