@@ -1,5 +1,4 @@
 ; LCD for AVR
-
 #include "config.inc"
 
         .section .text
@@ -7,15 +6,12 @@
         .org        0x0000
 
         ; set up the stack
-
             ldi     r28, (RAMEND & 0x00ff)
             ldi     r29, (RAMEND >> 8)
             out     _SPH, r29
-            out     _SPL, r28
-    
+            out     _SPL, r28    
             eor     r1, r1                  
-            out     _SREG, r1 
-    
+            out     _SREG, r1     
             call    main
             jmp     exit
 
@@ -59,7 +55,6 @@ datawrite:
             ldi     r24, 0x64               ; 100
             ldi     r25, 0x00             
             jmp     delay                 
-
 
 message:
             ldi     R24, 0x4d               ;'M'                 
