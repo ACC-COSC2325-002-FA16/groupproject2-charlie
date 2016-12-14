@@ -35,13 +35,12 @@ delay:
 commandwrite:
             out     LCD_DPRT, r24           ; load the command 
             cbi     LCD_CPRT, LCD_RS        ; turn on commanding
-            sbi     LCD_CPRT, LCD_EN        ; enable               
             
+            sbi     LCD_CPRT, LCD_EN        ; enable = 1                          
             ldi     r24, 0x01              
             ldi     r25, 0x00              
-            call    delay                            
-            
-            cbi     LCD_CPRT, LCD_EN        ; disable
+            call    delay                                       
+            cbi     LCD_CPRT, LCD_EN        ; enable = 0 for H->L pulse
 
             ldi     r24, 0x64               ; 100
             ldi     r25, 0x00              
@@ -50,13 +49,12 @@ commandwrite:
 datawrite:
             out     LCD_DPRT, r24           ; load the data 
             sbi     LCD_CPRT, LCD_RS        ; turn on data sending
-            sbi     LCD_CPRT, LCD_EN        ; enable             
-            
+
+            sbi     LCD_CPRT, LCD_EN        ; enable = 1                       
             ldi     r24, 0x01              
             ldi     r25, 0x00               
-            call    delay                
-            
-            cbi     LCD_CPRT, LCD_EN        ; disable
+            call    delay                            
+            cbi     LCD_CPRT, LCD_EN        ; enable = 0 for H->L pulse
             
             ldi     r24, 0x64               ; 100
             ldi     r25, 0x00             
@@ -92,7 +90,7 @@ main:
             ldi     R24,0xFF                
             out     LCD_DDDR, R24           ; turning on output mode
             out     LCD_CDDR, R24           ; turning on output mode
-            cbi     LCD_CPRT,LCD_EN         ; disable
+            cbi     LCD_CPRT,LCD_EN         ; enable = 0
     
             ldi     r24, 0xD0               ; 208
             ldi     r25, 0x07               ; 7  
@@ -117,7 +115,7 @@ main:
     
             call    message
 
-            ldi     r26, 7
+            ldi     r26, 7                  ; sevan spaces before next message
 spaces:        
             ldi     R24, 0x20               ;' '                 
             call    datawrite

@@ -80,6 +80,59 @@ Assigned to Amanda.
 - Basically, describe what is involved in interacting with the device.
 - Again, use screen captures of diagrams from documentation if you can.
 
+Our project utilized an LCD, or Liquid Crystal Display, to display text on a screen. LCDs are widely available and can be more advantageous than their predecessor the LED display. Both technologies debuted in the early '60s and have low costs. The LCD though uses less power than the LED display and normally offers more graphics to print. Because they are easily programmed, LCDs can be found everywhere from TVs to tablets. LCDs even made flat screen TVs possible.  
+
+The LCD used for our project has a 16x2 character grid, meaning 16 characters wide, 2 lines deep. Each character is a 5x7 pixel matrix. Other commonly used LCDs vary in size including 40x2, 20x2, 20x4, 16x1, 16x4, 40x4, and 8x1.
+
+What makes programming the LCD so easy is it has its own chip. A lot of LCDs, ours included, are controlled by the HD44780 Hitachi Controller. These chips are all the same for whichever format display so it is up to the programmer to keep in mind the display's size. Memory is contained in 80 bytes of Display Data Random Access Memory, arranged in 2 lines of 40 addresses. Each memory location controls the corresponding location on the display even when there is no display there, as is the case for a 16x2 display. On the other hand, the larger 40x4 displays contain 2 chips to house twice the data. 
+
+The LCDs come with either 14 or 16 interface pins and an LED backlight. The pins are ordered as follows:
+
+- Vss Ground
+- Vcc 5v power supply
+- V0 contrast adjustment pin. Receives analog voltage input to adjust the display's contrast. 
+- RS register select: command register (0) or data register (1)
+- Rw read/write: write (0) or read (1), like check for busy flag
+	rw to ground is permanently in write
+- E enable: allows lcd to latch data at the pins when a high-to-pulse occurs
+- DB0-DB7
+	8-bit parallel data port
+	or operation in 4 bit (db4-db7) 
+- anode
+- cathode for led backlight
+
+The data pins can write to information sent with ASCII codes to the screen. To save I/O pins, the LCDs may be operated in 4-bit mode, instead of 8-bit mode. In either mode, the programmer can also choose to use time delays or utilize the busy flag to take the polling approach to delays.
+
+The following table lists the commands available to interface with the LCD:
+
+For our code, we initialized the 5x7 display, set the cursor and turned on the display, cleared the display, set the cursor to move right, and sent a message. In doing so, we utilized two functions one for sending commands, the other data. Our instructions were sent to the functions in R24. Each function either set the RS bit to send data or cleared the bit to send commands. Then a high to low pulse was sent through the enable pin. Of course, we also had to set up a delay function so each command would have enough time to finish before starting the next. 
+
+Here is a cheat sheet of the commands:
+
+(Hex)	Command
+
+-  1	Clear display screen
+-  2	Return home
+-  4	Decrement cursor (shift cursor to left)
+-  6	Increment cursor (shift cursor to right)
+-  5	Shift display right
+-  7	Shift display left
+-  8	Display off, cursor off
+-  A	Display off, cursor on
+-  C	Display on, cursor off
+-  E	Display on, cursor blinking
+-  F	Display on, cursor blinking
+-  10	Shift cursor position to left
+-  14	Shift cursor position to right
+-  18	Shift the entire display to the left
+-  1C	Shift the entire display to the right
+-  80	Force cursor to beginning of 1st line
+-  C0	Force cursor to beginning of 2nd line
+-  28	Initiate 2 lines of 5x7 matrix (D4-D7, 4-bit)
+-  38	Initiate 2 lines of 5x7 matrix (D0-D7, 8-bit)
+
+Once we had working code up and running (in assembly!), we played around with scrolling the text. Given more time, we plan on making our own characters to write to the LCD.
+
 Development tools
 =================
 
